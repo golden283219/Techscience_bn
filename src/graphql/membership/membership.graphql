@@ -1,0 +1,35 @@
+extend type Query {
+  
+  memberships( paginateReq: PaginateReq! ): MembershipsRes!
+
+  membershipById( id: Int! ): Membership
+}
+
+extend type Mutation {
+  
+  createMembership(createMembershipReq: CreateMembershipReq!): MembershipRes!
+  
+  editMembership(editMembershipReq: EditMembershipReq!): MembershipRes!
+
+  deleteMembership( id: Int! ): MembershipRes!
+}
+
+input CreateMembershipReq {
+  name: String!
+}
+
+input EditMembershipReq {
+  id: Int!
+  name: String!
+}
+
+type MembershipsRes implements PaginateRes {
+  totalCount: Int!
+  memberships: [Membership]
+}
+
+type MembershipRes implements MutationRes {
+  scs: Boolean!
+  msg: String!
+  membership: Membership
+}

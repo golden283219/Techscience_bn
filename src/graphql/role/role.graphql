@@ -1,0 +1,35 @@
+extend type Query {
+  
+  roles( paginateReq: PaginateReq! ): RolesRes
+
+  roleById( id: Int! ): Role
+}
+
+extend type Mutation {
+  
+  createRole(createRoleReq: CreateRoleReq!): RoleRes!
+  
+  editRole(editRoleReq: EditRoleReq!): RoleRes!
+
+  deleteRole( id: Int! ): RoleRes!
+}
+
+input CreateRoleReq {
+  name: String!
+}
+
+input EditRoleReq {
+  id: Int!
+  name: String!
+}
+
+type RolesRes implements PaginateRes {
+  totalCount: Int!
+  roles: [Role]
+}
+
+type RoleRes implements MutationRes {
+  scs: Boolean!
+  msg: String!
+  role: Role
+}

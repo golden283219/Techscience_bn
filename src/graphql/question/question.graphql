@@ -1,0 +1,64 @@
+extend type Query {
+  
+  questions( paginateReq: PaginateReq! ): QuestionsRes!
+}
+
+extend type Mutation {
+  
+  createQuestion(createQuestionReq: MutateQuestionReq! ): QuestionRes!
+
+  createQuestions(createQuestionsReq: CreateQuestionsReq!): QuestionRes!
+  
+  editQuestion(editQuestionReq: MutateQuestionReq! ): QuestionRes!
+
+  deleteQuestion( id: Int! ): QuestionRes!
+}
+
+input MutateQuestionReq {
+  id: Int
+  examId: Int!
+  name: String!
+  type: String!
+  free: Boolean!
+  image: Upload
+}
+
+type QuestionDetail {
+  id: Int!
+  examId: Int!
+  name: String!
+  type: String!
+  free: Boolean!
+  image: String
+  choices: [Choice]
+}
+
+input GeneralChoice {
+  name: String!
+  correct: Boolean!
+  comment: String
+}
+
+input GeneralQuestion {
+  examId: Int!
+  name: String!
+  type: String!
+  free: Boolean
+  choices: [GeneralChoice]
+}
+
+input CreateQuestionsReq {
+  examId: Int!
+  questions: [GeneralQuestion!]
+}
+
+type QuestionsRes implements PaginateRes {
+  totalCount: Int!
+  questions: [QuestionDetail]
+}
+
+type QuestionRes implements MutationRes {
+  scs: Boolean!
+  msg: String!
+  question: Question
+}

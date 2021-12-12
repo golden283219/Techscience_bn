@@ -1,0 +1,31 @@
+extend type Query {
+    contents( paginateReq: PaginateReq! ): ContentsRes!
+    contentById( id: Int! ): Content
+}
+
+extend type Mutation {
+    createContent( createContentReq: CreateContentReq! ): ContentRes!
+    editContent(editContentReq: EditContentReq!): ContentRes!
+    deleteContent( id: Int!): ContentRes!
+}
+
+input CreateContentReq {
+    speechId: Int!
+    text: String!
+}
+
+input EditContentReq {
+    id: Int!
+    text: String!
+}
+
+type ContentsRes implements PaginateRes {
+    totalCount: Int!
+    contents: [Content]
+}
+
+type ContentRes implements MutationRes {
+    scs: Boolean!
+    msg: String!
+}
+

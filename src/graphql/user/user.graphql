@@ -1,0 +1,68 @@
+extend type Query {
+  
+  users( paginateReq: PaginateReq! ): UsersRes!
+
+  userById( id: Int! ): User
+}
+
+extend type Mutation {
+
+  createUser(createUserReq: CreateUserReq!): UserRes!
+    
+  editUser(editUserReq: EditUserReq! ): UserRes!
+
+  deleteUser( id: Int! ): UserRes!
+}
+
+input CreateUserReq {
+  firstname: String!
+  lastname: String!
+  email: String!
+  username: String!
+  password: String!
+  confirmPassword: String!
+  roleId: Int!
+  membershipId: Int!
+  accountId: Int!
+  approved: Boolean!
+  lockedOut: Boolean!
+}
+
+input EditUserReq {
+  id: Int!
+  firstname: String!
+  lastname: String!
+  email: String!
+  username: String!
+  roleId: Int!
+  membershipId: Int!
+  accountId: Int!
+  approved: Boolean!
+  lockedOut: Boolean!
+}
+
+type UserDetail {
+  id: Int!
+  firstname: String!
+  lastname: String!
+  fullname: String!
+  email: String!
+  username: String!
+  approved: Boolean!
+  lockedOut: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  role: Role!
+  membership: Membership!
+  account: Account!
+}
+
+type UsersRes implements PaginateRes {
+  totalCount: Int!
+  users: [UserDetail]
+}
+
+type UserRes implements MutationRes {
+  scs: Boolean!
+  msg: String!
+}

@@ -1,0 +1,32 @@
+extend type Query {
+    missingLetters( paginateReq: PaginateReq! ): MissingLettersRes!
+    missingById( id: Int! ): Missing
+}
+
+extend type Mutation {
+    createMissing( createMissingReq: CreateMissingReq! ): MissingRes!
+    editMissing(editMissingReq: EditMissingReq!): MissingRes!
+    deleteMissing( id: Int!): MissingRes!
+}
+
+input CreateMissingReq {
+    quesText: String!
+    ans: String!
+}
+
+input EditMissingReq {
+    id: Int!
+    quesText: String!
+    ans: String!
+}
+
+type MissingLettersRes implements PaginateRes {
+    totalCount: Int!
+    missingLetters: [Missing]
+}
+
+type MissingRes implements MutationRes {
+    scs: Boolean!
+    msg: String!
+}
+

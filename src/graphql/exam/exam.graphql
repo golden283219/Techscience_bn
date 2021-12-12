@@ -1,0 +1,68 @@
+extend type Query {
+  
+  exams( paginateReq: PaginateReq! ): ExamsRes!
+}
+
+extend type Mutation {
+
+  createExam(createExamReq: CreateExamReq! ): ExamRes!
+  
+  editExam(editExamReq: EditExamReq! ): ExamRes!
+
+  assignExam(assignExamReq: AssignExamReq! ): ExamRes!
+
+  requestExam(id: Int! ): ExamRes!
+  
+  deleteExam( id: Int! ): ExamRes!
+}
+
+input CreateExamReq {
+  subjectId: Int!
+  courseId: Int!
+  name: String!
+  type: String!
+  genre: String!
+  levelId: Int!
+  students: [Int]
+}
+
+input EditExamReq {
+  id: Int!
+  subjectId: Int!
+  courseId: Int!
+  name: String!
+  type: String!
+  levelId: Int!
+  genre: String!
+  students: [Int]
+}
+
+input AssignExamReq {
+  examId: Int!
+  students: [Int!]
+}
+
+type ExamDetail {
+  id: Int!
+  name: String!
+  type: String!
+  genre: String!
+  account: Account!
+  subject: Subject!
+  course: Course!
+  level: Level!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  students: [User]
+  questions: [QuestionDetail]
+}
+
+type ExamsRes implements PaginateRes {
+  totalCount: Int!
+  exams: [ExamDetail]
+}
+
+type ExamRes implements MutationRes {
+  scs: Boolean!
+  msg: String!
+}

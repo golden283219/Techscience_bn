@@ -1,0 +1,35 @@
+extend type Query {
+  
+  subjects( paginateReq: PaginateReq! ): SubjectsRes!
+
+  subjectById( id: Int! ): Subject
+}
+
+extend type Mutation {
+  
+  createSubject(createSubjectReq: CreateSubjectReq! ): SubjectRes!
+  
+  editSubject(editSubjectReq: EditSubjectReq! ): SubjectRes!
+
+  deleteSubject( id: Int! ): SubjectRes!
+}
+
+input CreateSubjectReq {
+  name: String!
+}
+
+input EditSubjectReq {
+  id: Int!
+  name: String!
+}
+
+type SubjectsRes implements PaginateRes {
+  totalCount: Int!
+  subjects: [Subject]
+}
+
+type SubjectRes implements MutationRes {
+  scs: Boolean!
+  msg: String!
+  subject: Subject
+}

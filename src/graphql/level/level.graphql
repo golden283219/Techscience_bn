@@ -1,0 +1,35 @@
+extend type Query {
+  
+  levels( paginateReq: PaginateReq! ): LevelsRes!
+
+  levelById( id: Int! ): Level
+}
+
+extend type Mutation {
+  
+  createLevel(createLevelReq: CreateLevelReq! ): LevelRes!
+  
+  editLevel(editLevelReq: EditLevelReq! ): LevelRes!
+
+  deleteLevel( id: Int! ): LevelRes!
+}
+
+input CreateLevelReq {
+  name: String!
+}
+
+input EditLevelReq {
+  id: Int!
+  name: String!
+}
+
+type LevelsRes implements PaginateRes {
+  totalCount: Int!
+  levels: [Level]
+}
+
+type LevelRes implements MutationRes {
+  scs: Boolean!
+  msg: String!
+  level: Level
+}

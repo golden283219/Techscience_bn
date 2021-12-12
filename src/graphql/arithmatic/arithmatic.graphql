@@ -1,0 +1,34 @@
+extend type Query {
+    arithmatics( paginateReq: PaginateReq! ): ArithmaticsRes!
+    arithmaticById( id: Int! ): Arithmatic
+}
+
+extend type Mutation {
+    createArithmatic( createArithmaticReq: CreateArithmaticReq! ): ArithmaticRes!
+    editArithmatic(editArithmaticReq: EditArithmaticReq!): ArithmaticRes!
+    deleteArithmatic( id: Int!): ArithmaticRes!
+}
+
+input CreateArithmaticReq {
+    category: String!
+    quesText: String!
+    ans: String!
+}
+
+input EditArithmaticReq {
+    id: Int!
+    category: String!
+    quesText: String!
+    ans: String!
+}
+
+type ArithmaticsRes implements PaginateRes {
+    totalCount: Int!
+    arithmatics: [Arithmatic]
+}
+
+type ArithmaticRes implements MutationRes {
+    scs: Boolean!
+    msg: String!
+}
+

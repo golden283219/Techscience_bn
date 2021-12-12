@@ -1,0 +1,170 @@
+scalar Date
+scalar Time
+scalar DateTime
+scalar Upload
+
+type Query {
+  sayHello(name: String!): String!
+}
+
+type Mutation {
+  sayHello(name: String!): String!
+}
+
+type Account {
+  id: Int!
+  name: String!
+  userId: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type User {
+  id: Int!
+  firstname: String!
+  lastname: String!
+  fullname: String!
+  email: String!
+  username: String!
+  roleId: Int!
+  membershipId: Int!
+  accountId: Int!
+  approved: Boolean!
+  lockedOut: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Membership {
+  id: Int!
+  name: String!
+}
+
+type Role {
+  id: Int!
+  name: String!
+}
+
+type Subject {
+  id: Int!
+  name: String!
+}
+
+type Course {
+  id: Int!
+  name: String!
+  subjectId: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Level {
+  id: Int!
+  name: String!
+}
+
+type Exam {
+  id: Int!
+  accountId: Int!
+  subjectID: Int!
+  courseID: Int!
+  name: String!
+  levelId: Int!
+  type: String!
+  genre: String!
+}
+
+type Question {
+  id: Int!
+  examId: Int!
+  name: String!
+  type: String!
+  free: Boolean!
+  image: String
+}
+
+type Choice {
+  id: Int!
+  questionId: Int!
+  name: String!
+  correct: Boolean!
+  comment: String
+}
+
+type Answer {
+  id: Int!
+  resultId: Int!
+  questionId: Int!
+  answer: String!
+  grade: Int
+  comment: String
+}
+
+type Missing {
+  id: Int!
+  quesText: String!
+  ans: String!
+}
+
+type Arithmatic {
+  id: Int!
+  category: String!
+  quesText: String!
+  ans: String!
+}
+
+type Result {
+  id: Int!
+  examId: Int!
+  userId: Int!
+  totalQuestion: Int
+  attempedQuestion: Int
+  assigneAt: DateTime
+  requesteAt: DateTime
+  tookAt: DateTime
+  grade: Int
+}
+
+type Shape {
+  id: Int!
+  image: String!
+  type: String!
+  userId: Int!
+}
+
+type Book {
+  id: Int!
+  name: String!
+  content: String!
+  userId: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Speech {
+  id: Int!
+  name: String!
+}
+
+type Content {
+  id: Int!,
+  speechId: Int!,
+  text: String!
+}
+
+input PaginateReq {
+  skip: Int!
+  limit: Int!
+  order: String!
+  sort: String!
+  filter: String
+}
+
+interface PaginateRes {
+  totalCount: Int!
+}
+
+interface MutationRes {
+  scs: Boolean!
+  msg: String!
+}

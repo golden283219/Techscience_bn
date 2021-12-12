@@ -1,0 +1,34 @@
+extend type Query {
+  books( paginateReq: PaginateReq! ): BooksRes!
+}
+
+extend type Mutation {
+  publishBook( publishBookReq: PublishBookReq! ): BookRes!
+
+}
+
+input PublishBookReq {
+  name: String!
+  file: Upload 
+  text: String
+}
+
+type BookDetail {
+  id: Int!
+  name: String!
+  content: String!
+  createdAt: DateTime!
+  updatedAt: DeteTime!
+  user: User!
+}
+
+type BooksRes implements PaginateRes {
+  totalCount: Int!
+  books: [BookDetail]
+}
+
+type BookRes implements MutationRes {
+  scs: Boolean!
+  msg: String!
+}
+

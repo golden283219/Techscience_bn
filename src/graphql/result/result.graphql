@@ -1,0 +1,94 @@
+extend type Query {
+  
+  results( paginateReq: PaginateReq! ): ResultsRes!
+
+  answers( paginateReq: PaginateReq! ): AnswersRes!
+}
+
+extend type Mutation {
+
+  saveResult(saveResultReq: SaveResultReq! ): ResultRes!
+    
+  gradeResult(gradeResultReq: GradeResultReq! ): ResultRes!
+
+  acceptResult( id: Int! ): ResultRes!
+
+  deleteResult( id: Int! ): ResultRes!
+}
+
+input SaveResultReq {
+  id: Int!
+  totalQuestion: Int!
+  attempedQuestion: Int!
+  tookAt: DateTime!
+  answers: [ExamAnswer!]
+}
+
+input GradeResultReq {
+  id: Int!
+  grades: [AnswerGrade!]
+}
+
+input ExamAnswer {
+  questionId: Int!
+  questionType: String!
+  answer: String!
+}
+
+input AnswerGrade {
+  id: Int!
+  grade: Int!
+  comment: String
+}
+
+type ResultDetail {
+  id: Int!
+  totalQuestion: Int
+  attempedQuestion: Int
+  assignedAt: DateTime
+  requestedAt: DateTime
+  tookAt: DateTime
+  grade: Int
+  exam: Exam!
+  user: User!
+  answers: [AnswerWithQuestion]
+}
+
+type Results {
+  totalCount: Int!
+  results: [ResultDetail]
+}
+
+type AnswerWithQuestion {
+  id: Int!
+  answer: String!
+  grade: Int
+  comment: String
+  question: Question!
+}
+
+type AnswerDetail {
+  id: Int!
+  answer: String!
+  grade: Int!
+  comment: String
+  result: ResultDetail!
+  question: QuestionDetail!
+}
+
+type ResultsRes {
+  pendings: Results!
+  assigneds: Results!
+  requesteds: Results
+  gradeds: Results
+}
+
+type AnswersRes implements PaginateRes {
+  totalCount: Int!
+  answers: [AnswerDetail]
+}
+
+type ResultRes implements MutationRes {
+  scs: Boolean!
+  msg: String!
+}

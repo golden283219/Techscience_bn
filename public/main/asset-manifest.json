@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e568b3d8.chunk.css",
+    "main.js": "/static/js/main.b0406a3e.chunk.js",
+    "runtime-main.js": "/static/js/runtime-main.01b7ea29.js",
+    "static/css/2.5ad8186f.chunk.css": "/static/css/2.5ad8186f.chunk.css",
+    "static/js/2.9490d824.chunk.js": "/static/js/2.9490d824.chunk.js",
+    "index.html": "/index.html",
+    "precache-manifest.23b6f7f40274ea0ebac50a7bd58fabd0.js": "/precache-manifest.23b6f7f40274ea0ebac50a7bd58fabd0.js",
+    "service-worker.js": "/service-worker.js",
+    "static/js/2.9490d824.chunk.js.LICENSE.txt": "/static/js/2.9490d824.chunk.js.LICENSE.txt",
+    "static/media/0.mp3": "/static/media/0.37a4cc93.mp3",
+    "static/media/1.mp3": "/static/media/1.443f1ca3.mp3",
+    "static/media/2.mp3": "/static/media/2.443f1ca3.mp3",
+    "static/media/3.mp3": "/static/media/3.443f1ca3.mp3",
+    "static/media/4.mp3": "/static/media/4.443f1ca3.mp3",
+    "static/media/5.mp3": "/static/media/5.443f1ca3.mp3",
+    "static/media/6.mp3": "/static/media/6.443f1ca3.mp3",
+    "static/media/7.mp3": "/static/media/7.443f1ca3.mp3",
+    "static/media/8.mp3": "/static/media/8.443f1ca3.mp3",
+    "static/media/9.mp3": "/static/media/9.443f1ca3.mp3",
+    "static/media/mdb.css": "/static/media/default-skin.b257fa9c.svg",
+    "static/media/a-lowercase.mp3": "/static/media/a-lowercase.443f1ca3.mp3",
+    "static/media/a-uppercase.mp3": "/static/media/a-uppercase.37a4cc93.mp3",
+    "static/media/carousel1.jpg": "/static/media/carousel1.826656b2.jpg",
+    "static/media/carousel2.jpg": "/static/media/carousel2.c9fe2295.jpg",
+    "static/media/carousel3.jpg": "/static/media/carousel3.f241b3a2.jpg",
+    "static/media/all.min.css": "/static/media/fa-solid-900.8e1ed89b.woff2",
+    "static/media/logo.png": "/static/media/logo.0925f8d2.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.01b7ea29.js",
+    "static/css/2.5ad8186f.chunk.css",
+    "static/js/2.9490d824.chunk.js",
+    "static/css/main.e568b3d8.chunk.css",
+    "static/js/main.b0406a3e.chunk.js"
+  ]
+}

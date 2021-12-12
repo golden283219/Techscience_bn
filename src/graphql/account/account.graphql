@@ -1,0 +1,51 @@
+extend type Query {
+  
+  accounts( paginateReq: PaginateReq! ): AccountsRes!
+
+  accountById( id: Int! ): AccountDetail
+}
+
+extend type Mutation {
+  
+  createAccount(createAccountReq: CreateAccountReq!): AccountRes!
+  
+  editAccount(editAccountReq: EditAccountReq!): AccountRes!
+
+  editAccountImage(editAccountImageReq: EditAccountImageReq!): AccountRes!
+
+  deleteAccount( id: Int! ): AccountRes!
+}
+
+input CreateAccountReq {
+  name: String!
+  userId: Int
+}
+
+input EditAccountReq {
+  id: Int!
+  name: String!
+  userId: Int
+}
+
+input EditAccountImageReq {
+  image: Upload!
+}
+
+type AccountDetail {
+  id: Int!
+  name: String!
+  createdAt:  DateTime!
+  updatedAt: DateTime!
+  user: User
+}
+
+type AccountsRes implements PaginateRes {
+  totalCount: Int!
+  accounts: [AccountDetail]
+}
+
+type AccountRes implements MutationRes {
+  scs: Boolean!
+  msg: String!
+  account: Account
+}
