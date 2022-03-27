@@ -1,15 +1,6 @@
 import { createTransport } from 'nodemailer'
 
-const transporter = createTransport({
-  host: process.env.EMAIL_HOST,
-  port: process.env.EMAIL_PORT,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASSWORD
-  }
-})
-
-export const resetMailSender = ({ receiver, resetToken }) => {
+export const resetMailSender = ({ receiver, resetToken }) => new Promise( resolve => {
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: receiver,
@@ -144,9 +135,20 @@ export const resetMailSender = ({ receiver, resetToken }) => {
       </body>
     `
   }
-
-  return transporter.sendMail(mailOptions, (err, info) => {
-    if (!!err) return console.log('email error', err)
-    return console.log('email sent', info.response)
+  const transporter = createTransport({
+    host: process.env.EMAIL_HOST,
+    port: process.env.EMAIL_PORT,
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASSWORD
+    }
   })
-}
+  transporter.sendMail(mailOptions).then( (err, info) => {
+    if (!!err) {
+      console.log('email error', err)
+      return resolve({ scs: false, msg: err+receiver+process.env.EMAIL_USER })
+    }
+    console.log('email sent', info.response)
+    return resolve({ scs: true, msg: info.response })
+  })
+})
